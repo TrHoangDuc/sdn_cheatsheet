@@ -1,0 +1,66 @@
+  <div class="container">
+      <div class="row">
+        <div class="col">
+          <h1>Watches</h1>
+        </div>
+        <div class="col">
+          <a href="/watch/addWatch" class="btn btn-success" style="align-self: self-end">Add a watch</a>
+        </div>
+      </div>
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>No.</th>
+            <th>Image</th>
+            <th>Watch name</th>
+            <th>Brand</th>
+            <th>Price</th>
+            <th>Is Automatic?</th>
+            <th>Description</th>
+            <th>Created At</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody class="table-group-divider">
+          <% watches.forEach(function(watch, index) { %>
+            <tr>
+              <td>
+                <%= index + 1 %>
+              </td>
+              <td>
+                <img src="<%= watch.image %>" style="width:50px" alt="">
+              </td>
+              <td>
+                <%= watch.watchName %>
+              </td>
+              <td>
+                <%= watch.brand.brandName %>
+              </td>
+              <td>
+                <%= watch.price %>
+              </td>
+              <td>
+                <%= watch.automatic ? 'Yes' : 'No' %>
+              </td>
+              <td>
+                <%= watch.watchDescription %>
+              </td>
+              <td>
+                <%= new Date(watch.createdAt).toLocaleDateString() %>
+              </td>
+              <td>
+                <a href="#" class="btn btn-danger" onclick="confirmDelete(event, '<%= watch._id %>')">Delete</a>
+              </td>
+            </tr>
+            <% }); %>
+        </tbody>
+      </table>
+    </div>
+
+
+
+
+
+
+
+link CDN BOOTstrap <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>

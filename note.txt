@@ -1,0 +1,49 @@
+//1. ref trong schema
+
+const mongoose = require("mongoose");
+const { Schema } = mongoose;
+const { comment } = require("./comment.schema.js");
+const { brand } = require("./brand.schema.js");
+
+const watchSchema = new Schema(
+  {
+    watchName: { type: String, require: true },
+    image: { type: String, require: true },
+    price: { type: Number, require: true },
+    automatic: { type: Boolean, default: false },
+    watchDescription: { type: String, require: true },
+    comments: [
+      {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "comment"
+      },
+    ],
+    brand: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "brand",
+      require: true,
+    },
+  },
+  { timestamps: true }
+);
+
+const watch = mongoose.model("watch", watchSchema);
+module.exports = watch;
+
+
+//2. mongoose model
++ create:
+ watch.create({
+        watchName, image, price, automatic, watchDescription, comments, brand: brandId
+      })
+
++ findById: 
+  const foundWatch = await watch.findById(id).populate('brand')
+
++ findByIdAndUpdate: 
+  watch.findByIdAndUpdate(watchId, {
+        watchName, image, price, automatic, watchDescription, brand: brandId
+      })
+
++ findByIdAndDelete: 
+  watch.findByIdAndDelete(id);
